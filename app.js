@@ -5,8 +5,15 @@ var http = require('http'),
 
 http.createServer(function (req, res) {
   res.writeHead(200, {'Content-Type': 'text/json'});
+  
+  var exclusionsCommand = "";
+  if(config.excludeTypes) {
+    config.excludeTypes.forEach(function(type, index, array) {
+      exclusionsCommand += " -x "+type;
+    });
+  }
 
-  exec("df -lh", function(error, stdout, stderr) {
+  exec("df -lh"+ exclusionsCommand, function(error, stdout, stderr) {
 
    	var lines = stdout.trim().split('\n'),
         header = lines.shift().split(/[\s]+/),
