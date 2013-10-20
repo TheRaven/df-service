@@ -9,7 +9,7 @@ http.createServer(function (req, res) {
   var exclusionsCommand = "";
   if(config.excludeTypes) {
     config.excludeTypes.forEach(function(type, index, array) {
-      exclusionsCommand += " -x "+type;
+      //exclusionsCommand += " -x "+type;
     });
   }
 
@@ -25,7 +25,8 @@ http.createServer(function (req, res) {
           properties = line.split(/[\s]+/);
 
       properties.forEach(function(property, index, array) {
-        drive[header[index].toLowerCase()] = property; 
+		var propertyName = header[index].toLowerCase().replace(/[&%?$*\s]/, "");
+        drive[propertyName] = property; 
       });
 
       drives.push(drive);
