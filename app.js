@@ -25,7 +25,7 @@ http.createServer(function (req, res) {
           properties = line.split(/[\s]+/);
 
       properties.forEach(function(property, index, array) {
-		var propertyName = header[index].toLowerCase().replace(/[&%?$*\s]/, "");
+		var propertyName = header[index].toLowerCase().replace(/[&%?$*\s]*/, "");
         drive[propertyName] = property; 
       });
 
