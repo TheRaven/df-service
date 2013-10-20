@@ -9,7 +9,7 @@ http.createServer(function (req, res) {
   var exclusionsCommand = "";
   if(config.excludeTypes) {
     config.excludeTypes.forEach(function(type, index, array) {
-      //exclusionsCommand += " -x "+type;
+      exclusionsCommand += " -x "+type;
     });
   }
 
